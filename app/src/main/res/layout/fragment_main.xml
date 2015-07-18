@@ -10,15 +10,117 @@
         android:id="@+id/scroll_view"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scan_qr_code_button"
-            android:layout_gravity="center"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:text="@string/scan_code"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_margin="6dp"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardUseCompatPadding="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/order_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Order"
+                        android:padding="10dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:gravity="center"
+                        android:textAllCaps="true"/>
+
+                    <TextView
+                        android:id="@+id/customer_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Customer Name: Mohammed Nafees"
+                        android:textSize="15sp"
+                        android:padding="5dp"
+                        android:textStyle="bold|italic"
+                        android:gravity="center"/>
+
+                    <EditText
+                        android:id="@+id/item_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Item Name"/>
+
+                    <EditText
+                        android:id="@+id/item_quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:hint="Item Quantity"/>
+
+                    <EditText
+                        android:id="@+id/additional_requests"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:hint="Any additional requests?"/>
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Amount: Rs. 0.0"
+                        android:textSize="18sp"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:gravity="right|end"/>
+
+                    <TextView
+                        android:id="@+id/vat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="VAT: Rs. 0.0"
+                        android:textSize="17sp"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:gravity="right|end"/>
+
+                    <TextView
+                        android:id="@+id/total_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="You have to pay: Rs. 0.0"
+                        android:textSize="20sp"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:gravity="right|end"
+                        android:layout_marginBottom="5dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/scan_qr_code_button"
+                android:layout_gravity="bottom|center_horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:text="@string/scan_code"
+                android:visibility="gone"/>
+
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -33,5 +135,15 @@
             app:layout_scrollFlags="scroll|enterAlways"/>
 
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/place_order_button"
+        app:layout_anchor="@id/scroll_view"
+        app:layout_anchorGravity="bottom|right|end"
+        android:src="@drawable/ic_done_white_24dp"
+        android:layout_margin="16dp"
+        android:clickable="true"/>
 
 </android.support.design.widget.CoordinatorLayout>
