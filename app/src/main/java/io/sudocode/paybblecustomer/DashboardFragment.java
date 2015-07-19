@@ -143,6 +143,7 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
         }
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
+            Toast.makeText(getActivity(), "Payment successful", Toast.LENGTH_LONG).show();
         }
     }
 
