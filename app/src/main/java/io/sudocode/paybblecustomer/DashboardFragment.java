@@ -3,6 +3,7 @@ package io.sudocode.paybblecustomer;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -128,8 +129,6 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 progressDialog.hide();
-                Toast.makeText(getActivity(), "Your order has been placed successfully.",
-                        Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -147,14 +146,17 @@ public class DashboardFragment extends Fragment {
         customerOrder.setAmount(mTotalAmountToPay);
         customerOrder.setAdditionalRequests(mAdditionalRequests.getText().toString());
         CustomerOrder.Location location = new CustomerOrder.Location();
-        //Location customerLocation = ((MainActivity) getActivity()).lastLocation();
-        //location.setLongitude(customerLocation.getLongitude());
-        //location.setLatitude(customerLocation.getLatitude());
-        location.setLatitude(12.9342678);
-        location.setLongitude(77.53432629999998);
+        Location customerLocation = ((MainActivity) getActivity()).currentLocation();
+        location.setLongitude(customerLocation.getLongitude());
+        location.setLatitude(customerLocation.getLatitude());
         customerOrder.setLocation(location);
 
-        firebase.push().setValue(customerOrder);
+        firebase = firebase.push();
+        firebase.setValue(customerOrder);
+        customerOrder.setKey(firebase.getKey());
+        LastPlacedOrder.instance().setLastOrder(customerOrder);
+
+        ((MainActivity) getActivity()).startLocationUpdates();
     }
 
 }

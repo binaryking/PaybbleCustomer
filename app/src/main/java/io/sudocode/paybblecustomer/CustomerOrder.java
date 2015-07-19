@@ -9,9 +9,18 @@ public class CustomerOrder {
     private int quantity;
     private String additionalRequests;
     private double amount;
+    private String key;
 
     public CustomerOrder(int id) {
         this.id = id;
+    }
+
+    public String getKey() {
+        return this.key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public int getId() {
