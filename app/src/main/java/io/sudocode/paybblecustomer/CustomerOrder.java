@@ -10,6 +10,7 @@ public class CustomerOrder {
     private String additionalRequests;
     private double amount;
     private String key;
+    private String btcWallet;
 
     public CustomerOrder(int id) {
         this.id = id;
@@ -73,6 +74,14 @@ public class CustomerOrder {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getBtcWallet() {
+        return btcWallet;
+    }
+
+    public void setBtcWallet(String btcWallet) {
+        this.btcWallet = btcWallet;
     }
 
     public static class Location {
